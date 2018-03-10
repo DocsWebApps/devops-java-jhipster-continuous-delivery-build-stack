@@ -16,6 +16,26 @@
 # SonarQube - code analyser                                         #
 #####################################################################
 
+# Install OracleJDK
+install_java() {
+    cd /opt
+    wget --no-check-certificate -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz \
+    && tar xvfz jdk-8u161-linux-x64.tar.gz \
+    && ln -s /opt/jdk1.8.0_161 /opt/jdk8 \
+    && ln -s /opt/jdk1.8.0_161/bin/java /usr/bin/java 
+    export JAVA_HOME=/opt/jdk8
+    export PATH=$JAVA_HOME/bin:$PATH
+}
+
+
+# Install Apache Maven
+install_maven() {
+    cd /opt
+    wget http://apache.mirror.anlx.net/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz \
+    && tar xvfz apache-maven-3.5.2-bin.tar.gz \
+    && ln -s /opt/apache-maven-3.5.2 /opt/mvn3
+}
+
 # Set Environment
 set_env() {
     echo "Setting environment variables..."
@@ -41,29 +61,17 @@ setup_folders() {
 # Setup Users
 setup_users() {
     echo "Setting up Jenkins and Nexus users..."
-    adduser -d ${DOCKER_VOLUMES}/jenkins -b /bin/bash -u 1000 jenkins
+    adduser -d /home/jenkins -b /bin/bash -u 1000 jenkins
     adduser -d ${DOCKER_VOLUMES}/nexus -b /bin/bash -u 200 nexus
-    chown jenkins:jenkins -R ${DOCKER_VOLUMES}/jenkins
+    chown jenkins:jenkins -R /home/jenkins
     chown nexus:nexus -R ${DOCKER_VOLUMES}/nexus
-}
-
-# SDK Install
-sdk_install() {
-    curl -s "https://get.sdkman.io" | bash
-    source "/root/.sdkman/bin/sdkman-init.sh"
-    echo 'export SDKMAN_DIR="/root/.sdkman"' >> .bashrc
-    echo '[[ -s "/root/.sdkman/bin/sdkman-init.sh" ]] && source "/root/.sdkman/bin/sdkman-init.sh"' >> .bashrc
-    sdk install java 8u161-oracle
-    sdk install maven 3.5.2
-    java -version
-    mvn --version
 }
 
 # Install Jenkins
 install_jenkins() {
     wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
     rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-    yum install jenkins
+    yum install -y jenkins
 }
 
 # Docker Install
@@ -103,8 +111,9 @@ buid_stack() {
 set_env
 update_system
 setup_folders
+install_java
+install_maven
 setup_users
-sdk_install
 install_jenkins
 docker_install
 docker_compose_install
