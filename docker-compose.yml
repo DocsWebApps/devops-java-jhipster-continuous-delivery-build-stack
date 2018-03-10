@@ -1,0 +1,44 @@
+version: '3.1'
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:${GITLAB_VERSION}
+    ports:
+      - "${GITLAB_PORT_80}:80"
+      - "${GITLAB_PORT_443}:443"
+      - "${GITLAB_PORT_22}:22"
+    volumes:
+      - ${DOCKER_VOLUMES}/gitlab/config:/etc/gitlab
+      - ${DOCKER_VOLUMES}gitlab/logs:/var/log/gitlab
+      - ${DOCKER_VOLUMES}/gitlab/data:/var/opt/gitlab
+
+  nexus:
+    image: sonatype/nexus:${NEXUS_VERSION}
+    volumes:
+      - ${DOCKER_VOLUMES}/nexus:/sonatype-work
+    ports:
+      - "${NEXUS_PORT_8081}:8081"
+
+  sonarqube:
+    image: sonarqube:${SONARQUBE_VERSION}
+    ports:
+      - "${SONARQUBE_PORT_9000}:9000"
+      - "${SONARQUBE_PORT_9092}:9092"
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
+    volumes:
+      - ${DOCKER_VOLUMES}/sonarqube/conf:/opt/sonarqube/conf
+      - ${DOCKER_VOLUMES}/sonarqube/data:/opt/sonarqube/data
+      - ${DOCKER_VOLUMES}/sonarqube/extensions:/opt/sonarqube/extensions
+      - ${DOCKER_VOLUMES}/sonarqube/bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    depends_on:
+      - db
+
+  db:
+    image: postgres:${POSTGRES_VERSION}
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - ${DOCKER_VOLUMES}/postgresql:/var/lib/postgresql
+      - ${DOCKER_VOLUMES}/postgresql/data:/var/lib/postgresql/data
