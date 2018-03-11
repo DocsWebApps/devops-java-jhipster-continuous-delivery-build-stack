@@ -23,8 +23,9 @@ install_java() {
     && tar xvfz jdk-8u161-linux-x64.tar.gz \
     && ln -s /opt/jdk1.8.0_161 /opt/jdk8 \
     && ln -s /opt/jdk1.8.0_161/bin/java /usr/bin/java 
-    export JAVA_HOME=/opt/jdk8
-    export PATH=$JAVA_HOME/bin:$PATH
+    echo 'export JAVA_HOME=/opt/jdk8' >> ${HOME}/.bashrc
+    echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ${HOME}/.bashrc
+    source ${HOME}/.bashrc
 }
 
 
@@ -34,6 +35,9 @@ install_maven() {
     wget http://apache.mirror.anlx.net/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz \
     && tar xvfz apache-maven-3.5.2-bin.tar.gz \
     && ln -s /opt/apache-maven-3.5.2 /opt/mvn3
+    echo 'export MAVEN_HOME=/opt/mvn3' >> ${HOME}/.bashrc
+    echo 'export PATH=$MAVEN_HOME/bin:$PATH' >> ${HOME}/.bashrc
+    source ${HOME}/.bashrc
 }
 
 # Set Environment

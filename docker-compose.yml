@@ -9,7 +9,7 @@ services:
       - "${GITLAB_PORT_22}:22"
     volumes:
       - ${DOCKER_VOLUMES}/gitlab/config:/etc/gitlab
-      - ${DOCKER_VOLUMES}gitlab/logs:/var/log/gitlab
+      - ${DOCKER_VOLUMES}/gitlab/logs:/var/log/gitlab
       - ${DOCKER_VOLUMES}/gitlab/data:/var/opt/gitlab
 
   nexus:
