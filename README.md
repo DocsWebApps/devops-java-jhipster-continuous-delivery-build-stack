@@ -1,14 +1,10 @@
-## A Continuous Integration Environment for JHipster Projects using Maven
+## A Continuous Integration Environment for Java Projects using Maven
 
-Version 1.1.0 2nd February 2018
+Version 1.2.0 22nd July 2018
 
-This project contains a build script to enable you to automatically build a complete working continuous integration environment from Docker images to support your JHipster development projects. 
+This project contains a build script to enable you to automatically build a complete working continuous integration environment from Docker images to support your Java development projects built using Maven. 
 
 The script is written for installation on Centos 7.
-
-Although originally designed to support JHipster projects that are built using Maven, it can be configured for other types of projects such as Java or Spring projects.
-
-For more information about JHipster please visit the following link:  <a href="http://www.jhipster.tech/" target="_blank">JHipster</a>
 
 The environment has the following components:
 
@@ -20,7 +16,7 @@ The environment has the following components:
 
 ### Workflow
 
-You check you code into GitLab throughout the day as you develop it. Jenkins will poll GitLab every 5 mins checking for new commits. On finding one it will checkout the code and build it getting any depdencies from the Nexus respository (that also proxies Maven Central for convinience). It will identify any build issues and once succssfully built with the 'package' Maven goal, it will run your automated tests to check for any failures. If your tests pass, the final step is to analyse your code using SonarQube. You can then view the results of the analysis and rectify any problems early in the development lifecycle.
+You check you code into GitLab throughout the day as you develop it. You configure Jenkins to poll GitLab checking for new commits. On finding one it will checkout the code and build it getting any depdencies from the Nexus respository (that also proxies Maven Central for convinience). It will identify any build issues and once succssfully built with the 'package' Maven goal, it will run your automated tests to check for any failures. If your tests pass, the final step is to analyse your code using SonarQube. You can then view the results of the analysis and rectify any problems early in the development lifecycle.
 
 The idea behind this project is simple, develop good quality code and detect issues early on when they can be easily fixed.
 
@@ -41,22 +37,18 @@ Good luck and enjoy !
 3. Clone this repository onto your new Centos 7 server 
 
 ```ruby
-git clone https://github.com/DocsWebApps/JHispterCIBuildEnvironment.git
+git clone https://github.com/DocsWebApps/DocsAppStack.git 
 ```
 
 4. Set the environment variables to your choice in the file set_env.bash. This involves selecting where you want the container bind mounts, what ports your want each service in the environment to listen on and which versions of each component do you wish to use. You can also set up the hostname of your server here.  
 
-5. Set the number of Jenkins executors you need in the executors.groovy file under the jenkins folder.
-
-6. Rename the folder JHispterCIBuildEnvironment to a name of your choice. I advise this since Docker will use the folder name to create and name a docker network for the environment and also as a prefix for the containers that are created. Therefore having a meaningful name here helps.
-
-6. Run the build script as root, once completed you should have a fully built CI environment
+5. Run the build script as root, once completed you should have a fully built CI environment
 
 ```ruby
-./appdev_ci_build.bash
+./build.bash
 ``` 
 
-7. Now you need to configure the environment by following the instructions below
+6. Now you need to configure the environment by following the instructions below
 
 ### Instructions to configure the environment
 
@@ -96,7 +88,7 @@ ${DOCKER_VOLUMES}/secrets/initialAdminPassword
 4. For more information about Nexus, please visit: <a href="https://support.sonatype.com/hc/en-us/categories/201980798" target="_blank">Nexus</a>
 
 #### SonarQube
-1. Navigate to http://{serverhostname}:9040
+1. Navigate to http://{serverhostname}:9000
 
 2. Login using the default username / password of: admin / admin. Now change the admin password.
 
@@ -118,4 +110,4 @@ You can start and stop your CI environment by simply using the following command
 
 ### License
 
-JHispterCIBuildEnvironment is released under the <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT License</a>.
+DocsAppStack is released under the <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT License</a>.
