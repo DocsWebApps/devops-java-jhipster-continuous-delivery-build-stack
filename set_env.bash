@@ -11,11 +11,11 @@ export GITLAB_PORT_443=9060
 
 export NEXUS_PORT_8081=9030
 
-export SONARQUBE_PORT_9000=9040
+export SONARQUBE_PORT_9000=9000
 export SONARQUBE_PORT_9092=9080
 
-# Set the docker image versions, JENKINS reverts to LTS so if you want change it change it in the Dockerfile
-export GITLAB_VERSION=10.3.5-ce.0
-export NEXUS_VERSION=2.14.5
-export SONARQUBE_VERSION=6.7.1
-export POSTGRES_VERSION=10.1
+# Set the docker image versions
+export GITLAB_VERSION=10.8.4-ce.0
+export NEXUS_VERSION=2.14.8-01
+export SONARQUBE_VERSION=7.1
+export POSTGRES_VERSION=10.3
