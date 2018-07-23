@@ -43,18 +43,24 @@ git clone https://github.com/DocsWebApps/DocsAppStack.git
 
 4. Set the environment variables to your choice in the file set_env.bash. This involves selecting where you want the container bind mounts, what ports your want each service in the environment to listen on and which versions of each component do you wish to use. You can also set up the hostname of your server here.  
 
-5. Run the build script as root, once completed you should have a fully built CI environment
+5. Run the build script as root, once completed you should have a fully built CI environment with all the tools installed and ready to start up.
 
 ```ruby
 ./build.bash
 ``` 
 
-6. Now you need to configure the environment by following the instructions below
+6. Now you can start your stack using the command below. This will start Jenkins and download and start all the Docker images. Please give enough time for GitLab to start, it may take a few mins. You can check its status using he command 'docker container ls'. 
+
+```ruby
+./start_stack.bash
+``` 
+
+7. Now you need to configure the environment by following the instructions below
 
 ### Instructions to configure the environment
 
 #### GitLab
-1. Naviagte to http://{serverhostname}:9010 
+1. Naviagte to http://{serverhostname}:{port: default 9010} 
 
 2. You'll be asked to change your password. This is infact the password for the 'root' user which is the default administration account.
 
@@ -63,7 +69,7 @@ git clone https://github.com/DocsWebApps/DocsAppStack.git
 4. For more information about GitLab and how to use it please visit: <a href="https://about.gitlab.com/" target="_blank">GitLab</a>
 
 #### Jenkins
-1. Naviagte to http://{serverhostname}:9020
+1. Naviagte to http://{serverhostname}:8080
 
 2. You will be asked to unlock Jenkins by entering the admin password. This can be found in the file below. Simply 'cat' this file and copy the contents into the Admistrator password field in the browser. 
 
@@ -80,7 +86,7 @@ ${DOCKER_VOLUMES}/secrets/initialAdminPassword
 6. More information about how to setup and use Jenkins can be found at: <a href="https://jenkins.io/" target="_blank">Jenkins</a>
 
 #### Nexus
-1. Navigate to http://{serverhostname}:9030/nexus/#welcome
+1. Navigate to http://{serverhostname}:{port: default 9030}/nexus/#welcome
 
 2. Login using the default username password of: admin / admin123. Now change the admin password.
 
@@ -89,7 +95,7 @@ ${DOCKER_VOLUMES}/secrets/initialAdminPassword
 4. For more information about Nexus, please visit: <a href="https://support.sonatype.com/hc/en-us/categories/201980798" target="_blank">Nexus</a>
 
 #### SonarQube
-1. Navigate to http://{serverhostname}:9000
+1. Navigate to http://{serverhostname}:{port: default 9000}
 
 2. Login using the default username / password of: admin / admin. Now change the admin password.
 
@@ -99,7 +105,7 @@ ${DOCKER_VOLUMES}/secrets/initialAdminPassword
 
 ### Starting and stopping your environment
 
-You can start and stop your CI environment by simply using the following commands:
+You can start up or stop your CI environment by simply using the following commands:
 
 ```ruby
 ./start_stack.bash - to start the CI environment
