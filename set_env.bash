@@ -1,5 +1,5 @@
 # Choose where you want the bind mounts to go.
-export DOCKER_VOLUMES=./docker_volumes
+export DOCKER_VOLUMES=${HOME}/DocsAppStack/docker_volumes
 
 # Setup the LISTEN ports for the various components to your choice.
 export GITLAB_PORT_80=9010

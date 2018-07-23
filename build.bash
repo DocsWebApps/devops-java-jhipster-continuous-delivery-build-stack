@@ -18,7 +18,7 @@
 
 # Install OracleJDK
 install_java() {
-    yum install $JAVA_VERSION 
+    yum install -y $JAVA_VERSION 
 }
 
 
@@ -106,15 +106,15 @@ buid_stack() {
 
 # Build Steps
 set_env
-#update_system
-#setup_folders
+update_system
+setup_folders
 install_java
-#install_maven
-#setup_users
-#install_jenkins
-#docker_install
-#docker_compose_install
-#docker_machine_install
+install_maven
+setup_users
+install_jenkins
+docker_install
+docker_compose_install
+docker_machine_install
 buid_stack
 echo "All Done !!"
 # End
