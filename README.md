@@ -13,6 +13,7 @@ The environment has the following components:
 3. Jenkins: This is the task runner for the environment.
 4. Nexus: For storing built artifacts and dependencies. Proxies Maven Central for seemless downloading of dependencies.
 5. SonarQube: To analyse your code to identify code smells, bugs and vulnerabilities. 
+6. This project installs Docker onto your machine and except Jenkins and Maven, uses Docker images of all the other tools.
 
 ### Workflow
 
