@@ -17,7 +17,7 @@ The environment has the following components:
 
 ### Workflow
 
-You check you code into GitLab throughout the day as you develop it. You configure Jenkins to poll GitLab checking for new commits. On finding one it will checkout the code and build it getting any depdencies from the Nexus respository (that also proxies Maven Central for convinience). It will identify any build issues and once succssfully built with the 'package' Maven goal, it will run your automated tests to check for any failures. If your tests pass, the final step is to analyse your code using SonarQube. You can then view the results of the analysis and rectify any problems early in the development lifecycle.
+You check you code into GitLab throughout the day as you develop it. You configure Jenkins to poll GitLab checking for new commits. On finding one it will checkout the code and build it getting any depdencies from the Nexus respository (that also proxies Maven Central for convinience). It will identify any build issues and once successfully built with the 'package' Maven goal, it will run your automated tests to check for any failures. If your tests pass, the final step is to analyse your code using SonarQube. You can then view the results of the analysis and rectify any problems early in the development lifecycle.
 
 The idea behind this project is simple, develop good quality code and detect issues early on when they can be easily fixed.
 
@@ -49,7 +49,7 @@ git clone https://github.com/DocsWebApps/DocsAppStack.git
 ./build.bash
 ``` 
 
-6. Now you can start your stack using the command below. This will start Jenkins and download and start all the Docker images. Please give enough time for GitLab to start, it may take a few mins. You can check its status using he command 'docker container ls'. 
+6. Now you can start your stack using the command below. This will start Jenkins and download and start all the Docker images. Please give enough time for GitLab to start, it may take a few mins. You can check its status using the command 'docker container ls'. 
 
 ```ruby
 ./start_stack.bash
