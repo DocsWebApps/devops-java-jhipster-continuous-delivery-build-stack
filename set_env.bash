@@ -16,3 +16,6 @@ export GITLAB_VERSION=10.8.4-ce.0
 export NEXUS_VERSION=2.14.8-01
 export SONARQUBE_VERSION=7.1
 export POSTGRES_VERSION=10.3
+
+# Set your version of java
+export JAVA_VERSION=java-1.8.0-openjdk.x86_64

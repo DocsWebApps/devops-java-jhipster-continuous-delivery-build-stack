@@ -18,14 +18,7 @@
 
 # Install OracleJDK
 install_java() {
-    cd /opt
-    wget --no-check-certificate -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz \
-    && tar xvfz jdk-8u161-linux-x64.tar.gz \
-    && ln -s /opt/jdk1.8.0_161 /opt/jdk8 \
-    && ln -s /opt/jdk1.8.0_161/bin/java /usr/bin/java 
-    echo 'export JAVA_HOME=/opt/jdk8' >> ${HOME}/.bashrc
-    echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ${HOME}/.bashrc
-    source ${HOME}/.bashrc
+    yum install $JAVA_VERSION 
 }
 
 
@@ -108,20 +101,20 @@ docker_machine_install() {
 # Docker-Compose - Build servers !
 buid_stack() {
     echo "OK, building your stack..."
-    ./start_stack.bash 
+    ${HOME}/DocsAppStack/start_stack.bash 
 }
 
 # Build Steps
 set_env
-update_system
-setup_folders
+#update_system
+#setup_folders
 install_java
-install_maven
-setup_users
-install_jenkins
-docker_install
-docker_compose_install
-docker_machine_install
+#install_maven
+#setup_users
+#install_jenkins
+#docker_install
+#docker_compose_install
+#docker_machine_install
 buid_stack
 echo "All Done !!"
 # End
