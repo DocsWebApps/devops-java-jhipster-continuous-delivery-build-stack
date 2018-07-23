@@ -18,16 +18,18 @@
 
 # Install OracleJDK
 install_java() {
+    echo "Installing Java..."
     yum install -y $JAVA_VERSION 
 }
 
 
 # Install Apache Maven
 install_maven() {
+    echo "Installing Maven..."
     cd /opt
-    wget http://apache.mirror.anlx.net/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz \
-    && tar xvfz apache-maven-3.5.2-bin.tar.gz \
-    && ln -s /opt/apache-maven-3.5.2 /opt/mvn3
+    wget http://apache.mirror.anlx.net/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz \
+    && tar xvfz apache-maven-3.5.4-bin.tar.gz \
+    && ln -s /opt/apache-maven-3.5.4 /opt/mvn3
     echo 'export MAVEN_HOME=/opt/mvn3' >> ${HOME}/.bashrc
     echo 'export PATH=$MAVEN_HOME/bin:$PATH' >> ${HOME}/.bashrc
     source ${HOME}/.bashrc
@@ -66,6 +68,7 @@ setup_users() {
 
 # Install Jenkins
 install_jenkins() {
+    echo "Installing Jenkins..."
     wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
     rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
     yum install -y jenkins
@@ -99,22 +102,21 @@ docker_machine_install() {
 }
 
 # Docker-Compose - Build servers !
-buid_stack() {
+build_stack() {
     echo "OK, building your stack..."
     ${HOME}/DocsAppStack/start_stack.bash 
 }
 
 # Build Steps
 set_env
-update_system
-setup_folders
-install_java
+#update_system
+#setup_folders
+#install_java
 install_maven
-setup_users
-install_jenkins
-docker_install
-docker_compose_install
-docker_machine_install
-buid_stack
-echo "All Done !!"
+#setup_users
+#install_jenkins
+#docker_install
+#docker_compose_install
+#docker_machine_install
+#echo "All Done !!"
 # End
