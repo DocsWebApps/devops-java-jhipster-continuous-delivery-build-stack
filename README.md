@@ -32,7 +32,7 @@ Good luck and enjoy !
 2. Install 'git' so that you can download this repository
 
 ```ruby
- yum install -y git
+yum install -y git
 ```
 
 3. Clone this repository onto your new Centos 7 server 
