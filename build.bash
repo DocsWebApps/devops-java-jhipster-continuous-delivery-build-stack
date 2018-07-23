@@ -72,6 +72,10 @@ install_jenkins() {
     wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
     rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
     yum install -y jenkins
+    firewall-cmd --zone=public --permanent --add-port=8080/tcp
+    systemctl restart firewalld
+    systemctl start jenkins
+
 }
 
 # Docker Install
@@ -109,15 +113,15 @@ build_stack() {
 
 # Build Steps
 set_env
-update_system
-setup_folders
-install_java
-install_maven
-setup_users
+#update_system
+#setup_folders
+#install_java
+#install_maven
+#setup_users
 install_jenkins
-docker_install
-docker_compose_install
-docker_machine_install
+#docker_install
+#docker_compose_install
+#docker_machine_install
 #build_stack
 echo "All Done !!"
 # End
