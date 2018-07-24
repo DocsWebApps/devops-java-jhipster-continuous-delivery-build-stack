@@ -54,7 +54,6 @@ update_system()  {
 setup_folders() {
     echo "Creating bind mounts..."
     mkdir ${DOCKER_VOLUMES}
-    mkdir ${DOCKER_VOLUMES}/nexus
 }
 
 # Setup Users
@@ -62,9 +61,8 @@ setup_users() {
     echo "Setting up Jenkins and Nexus users..."
     adduser -d /home/jenkins -b /bin/bash -u 1000 jenkins
     adduser -d /home/nexus -b /bin/bash -u 200 nexus
-    chown jenkins:jenkins -R /home/jenkins
+    mkdir ${DOCKER_VOLUMES}/nexus
     chown nexus:nexus -R ${DOCKER_VOLUMES}/nexus
-    chown nexus:nexus -R /home/nexus
 }
 
 # Install Jenkins
@@ -112,15 +110,15 @@ build_stack() {
 
 # Build Steps
 set_env
-update_system
+#update_system
 setup_folders
-install_java
-install_maven
+#install_java
+#install_maven
 setup_users
-install_jenkins
-docker_install
-docker_compose_install
-docker_machine_install
+#install_jenkins
+#docker_install
+#docker_compose_install
+#docker_machine_install
 #build_stack
 echo "All Done !!"
 # End
