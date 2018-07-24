@@ -1,5 +1,5 @@
 # Choose where you want the bind mounts to go.
-export DOCKER_VOLUMES=${HOME}/DocsAppStack/docker_volumes
+export DOCKER_VOLUMES=./docker_volumes
 
 # Setup the LISTEN ports for the various components to your choice.
 export GITLAB_PORT_80=9010
@@ -19,3 +19,6 @@ export POSTGRES_VERSION=10.3
 
 # Set your version of java
 export JAVA_VERSION=java-1.8.0-openjdk.x86_64
+
+# Set your Maven version
+export MAVEN_VERSION=3.5.4

@@ -27,9 +27,9 @@ install_java() {
 install_maven() {
     echo "Installing Maven..."
     cd /opt
-    wget http://apache.mirror.anlx.net/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz \
-    && tar xvfz apache-maven-3.5.4-bin.tar.gz \
-    && ln -s /opt/apache-maven-3.5.4 /opt/mvn3
+    wget http://apache.mirror.anlx.net/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+    && tar xvfz apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+    && ln -s /opt/apache-maven-${MAVEN_VERSION} /opt/mvn3
     echo 'export MAVEN_HOME=/opt/mvn3' >> ${HOME}/.bashrc
     echo 'export PATH=$MAVEN_HOME/bin:$PATH' >> ${HOME}/.bashrc
     source ${HOME}/.bashrc

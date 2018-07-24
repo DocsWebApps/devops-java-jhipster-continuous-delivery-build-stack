@@ -1,6 +1,6 @@
 ## A Continuous Integration Environment for Java Projects using Maven
 
-Version 1.2.0 22nd July 2018
+Version 1.2.1 23rd July 2018
 
 This project contains a build script to enable you to automatically build a complete working continuous integration environment from Docker images to support your Java development projects built using Maven. 
 
@@ -17,7 +17,7 @@ The environment has the following components:
 
 ### Workflow
 
-You check you code into GitLab throughout the day as you develop it. You configure Jenkins to poll GitLab checking for new commits. On finding one it will checkout the code and build it getting any depdencies from the Nexus respository (that also proxies Maven Central for convinience). It will identify any build issues and once successfully built with the 'package' Maven goal, it will run your automated tests to check for any failures. If your tests pass, the final step is to analyse your code using SonarQube. You can then view the results of the analysis and rectify any problems early in the development lifecycle.
+You check you code into GitLab throughout the day as you develop it. You configure Jenkins to poll GitLab at regular intervals checking for new commits. On finding one it will checkout the code and build it getting any dependencies from the Nexus respository (that also proxies Maven Central for convinience). It will identify any build issues and once successfully built with the 'package' Maven goal, it will run your automated tests to check for any failures. If your tests pass, the final step is to analyse your code using SonarQube. You can then view the results of the analysis and rectify any problems early in the development lifecycle.
 
 The idea behind this project is simple, develop good quality code and detect issues early on when they can be easily fixed.
 
@@ -38,7 +38,7 @@ yum install -y git
 3. Clone this repository onto your new Centos 7 server 
 
 ```ruby
-git clone https://github.com/DocsWebApps/DocsAppStack.git 
+git clone https://github.com/DocsWebApps/JavaCICDStack.git 
 ```
 
 4. Set the environment variables to your choice in the file set_env.bash. This involves selecting where you want the container bind mounts, what ports your want each service in the environment to listen on and which versions of each component do you wish to use. You can also set up the hostname of your server here.  
