@@ -61,9 +61,10 @@ setup_folders() {
 setup_users() {
     echo "Setting up Jenkins and Nexus users..."
     adduser -d /home/jenkins -b /bin/bash -u 1000 jenkins
-    adduser -d ${DOCKER_VOLUMES}/nexus -b /bin/bash -u 200 nexus
+    adduser -d /home/nexus -b /bin/bash -u 200 nexus
     chown jenkins:jenkins -R /home/jenkins
     chown nexus:nexus -R ${DOCKER_VOLUMES}/nexus
+    chown nexus:nexus -R /home/nexus
 }
 
 # Install Jenkins
