@@ -50,18 +50,12 @@ update_system()  {
     yum install -y fontconfig freetype freetype-devel fontconfig-devel libstdc++
 }
 
-# Setup Other Folders
-setup_folders() {
-    echo "Creating bind mounts..."
-    mkdir ${DOCKER_VOLUMES}
-}
-
 # Setup Users
 setup_users() {
     echo "Setting up Jenkins and Nexus users..."
     adduser -d /home/jenkins -b /bin/bash -u 1000 jenkins
     adduser -d /home/nexus -b /bin/bash -u 200 nexus
-    mkdir ${DOCKER_VOLUMES}/nexus
+    mkdir -p ${DOCKER_VOLUMES}/nexus
     chown nexus:nexus -R ${DOCKER_VOLUMES}/nexus
 }
 
@@ -102,23 +96,15 @@ docker_machine_install() {
     chmod +x /usr/local/bin/docker-machine
 }
 
-# Docker-Compose - Build servers !
-build_stack() {
-    echo "OK, building your stack..."
-    ${HOME}/DocsAppStack/start_stack.bash 
-}
-
 # Build Steps
 set_env
-#update_system
-setup_folders
-#install_java
-#install_maven
+update_system
 setup_users
-#install_jenkins
-#docker_install
-#docker_compose_install
-#docker_machine_install
-#build_stack
+install_java
+install_maven
+install_jenkins
+docker_install
+docker_compose_install
+docker_machine_install
 echo "All Done !!"
 # End
