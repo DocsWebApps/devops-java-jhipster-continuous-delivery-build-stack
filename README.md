@@ -120,4 +120,4 @@ You can start up or stop your CI environment by simply using the following comma
 
 ### License
 
-DocsAppStack is released under the <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT License</a>.
+This project is released under the <a href="http://www.opensource.org/licenses/MIT" target="_blank">MIT License</a>.
