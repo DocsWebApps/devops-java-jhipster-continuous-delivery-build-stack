@@ -50,7 +50,9 @@ under the License.
    | The path to the local repository maven will use to store artifacts.
    |
    | Default: ${user.home}/.m2/repository-->
-  <localRepository>/var/jenkins_home/maven/.m2/repository</localRepository>
+
+  <!-- Set your maven repo location here -->
+  <localRepository>/opt/maven/maven-repo</localRepository>
 
   <!-- interactiveMode
    | This will determine whether maven prompts you when it needs input. If set to false,
@@ -60,6 +62,7 @@ under the License.
    | Default: true
   <interactiveMode>true</interactiveMode>
   -->
+r
 
   <!-- offline
    | Determines whether maven should attempt to connect to the network when executing a build.
@@ -115,11 +118,6 @@ under the License.
      | NOTE: You should either specify username/password OR privateKey/passphrase, since these pairings are
      |       used together.
      | -->
-    <server>
-      <id>deploymentRepo</id>
-      <username>{{YOUR-USERNAME}}</username>
-      <password>{{YOUR-PASSWORD}}</password>
-    </server>
 
     <!-- Another sample, using keys to authenticate.
     <server>
@@ -128,6 +126,13 @@ under the License.
       <passphrase>optional; leave empty if not used.</passphrase>
     </server>
     -->
+    
+    <!-- Setup your own Nexus repo here. Default Nexus admin user is being used by default -->
+    <server>
+      <id>deploymentRepo</id>
+      <username>admin</username>
+      <password>admin123</password>
+    </server>
   </servers>
 
   <!-- mirrors
@@ -154,12 +159,13 @@ under the License.
       <url>http://my.repository.com/repo/path</url>
     </mirror>
      -->
-
+    
+    <!-- Point to your won Nexus repo here. Default settings are applied. -->
     <mirror>
       <id>deploymentRepo</id>
       <mirrorOf>central</mirrorOf>
       <name>public</name>
-      <url>http://nexus:8081/repository/{{YOUR-CENTRAL-REPO}}/</url>
+      <url>http://localhost:9030/nexus/content/groups/public/</url>
     </mirror>
 
   </mirrors>

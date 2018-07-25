@@ -26,13 +26,16 @@ install_java() {
 # Install Apache Maven
 install_maven() {
     echo "Installing Maven..."
-    cd /opt
+    mkdir /opt/maven
+    cd /opt/maven
     wget http://apache.mirror.anlx.net/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
     && tar xvfz apache-maven-${MAVEN_VERSION}-bin.tar.gz \
-    && ln -s /opt/apache-maven-${MAVEN_VERSION} /opt/mvn3
-    echo 'export MAVEN_HOME=/opt/mvn3' >> ${HOME}/.bashrc
+    && ln -s /opt/maven/apache-maven-${MAVEN_VERSION} /opt/maven/mvn3
+    echo 'export MAVEN_HOME=/opt/maven/mvn3' >> ${HOME}/.bashrc
     echo 'export PATH=$MAVEN_HOME/bin:$PATH' >> ${HOME}/.bashrc
     source ${HOME}/.bashrc
+    cp ./settings.xml /opt/maven/mvn3/conf/settings.xml
+    rm -rf /opt/maven/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 }
 
 # Set Environment
@@ -103,8 +106,8 @@ setup_users
 install_java
 install_maven
 install_jenkins
-docker_install
-docker_compose_install
-docker_machine_install
+install_docker
+install_docker_compose
+install_docker_machine
 echo "All Done !!"
 # End

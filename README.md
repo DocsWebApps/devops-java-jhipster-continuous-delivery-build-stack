@@ -103,6 +103,9 @@ ${DOCKER_VOLUMES}/secrets/initialAdminPassword
 
 4. More information about SonarQube can be found at <a href="https://docs.sonarqube.org/display/SONAR/Documentation" target="_blank">SonarQube</a>
 
+#### Maven/Nexus Dependency Management
+Maven is configured by default to download dependencies its own local respository stored in '/opt/maven/maven-repo' via Nexus.This enables you to build up an artifact repository in Nexus that can be used by other servers/developers to retireve dependencies. It uses the default Nexus admin username/password but you can change these settings easily by modifying the file '/opt/maven/mvn3/conf/settings.xml'.
+
 ### Starting and stopping your environment
 
 You can start up or stop your CI environment by simply using the following commands:

@@ -18,7 +18,7 @@ export SONARQUBE_VERSION=7.1
 export POSTGRES_VERSION=10.3
 
 # Set your version of java
-export JAVA_VERSION=java-1.8.0-openjdk.x86_64
+export JAVA_VERSION=java-1.8.0-openjdk-devel
 
 # Set your Maven version
 export MAVEN_VERSION=3.5.4
