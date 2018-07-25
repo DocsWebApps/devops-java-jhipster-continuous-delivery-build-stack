@@ -1,6 +1,6 @@
 ## A Continuous Integration Environment for Java Projects using Maven
 
-Version 1.2.1 23rd July 2018
+Version 1.0.0 25th July 2018
 
 This project contains a build script to enable you to automatically build a complete working continuous integration environment from Docker images to support your Java development projects built using Maven. 
 
@@ -88,7 +88,7 @@ ${DOCKER_VOLUMES}/secrets/initialAdminPassword
 #### Nexus
 1. Navigate to http://{serverhostname}:{port: default 9030}/nexus/#welcome
 
-2. Login using the default username password of: admin / admin123. Now change the admin password.
+2. Login using the default username password of: admin / admin123. If you choose to change the 'admin' password now, please read the notes below in the section 'Maven/Nexus'.
 
 3. Setup new users and repositories as you need
 
@@ -97,14 +97,14 @@ ${DOCKER_VOLUMES}/secrets/initialAdminPassword
 #### SonarQube
 1. Navigate to http://{serverhostname}:{port: default 9000}
 
-2. Login using the default username / password of: admin / admin. Now change the admin password.
+2. Login using the default username / password of: admin / admin. Now change the 'admin' password.
 
 3. You will be asked if you want to setup a token, but you can skip this tutorial
 
 4. More information about SonarQube can be found at <a href="https://docs.sonarqube.org/display/SONAR/Documentation" target="_blank">SonarQube</a>
 
 #### Maven/Nexus Dependency Management
-Maven is configured by default to download dependencies to its own local respository stored in '/opt/maven/maven-repo' via the Nexus repository. This enables you to build up an artifact repository in Nexus that can be used by other servers/services and/or developers to retrieve dependencies. It uses the default Nexus admin username/password but you can change these settings easily by modifying the file '/opt/maven/mvn3/conf/settings.xml'.
+Maven is configured by default to download dependencies to its own local respository stored in '/opt/maven/maven-repo' via the Nexus repository. This enables you to build up an artifact repository in Nexus that can be used by other servers/services and/or developers to retrieve dependencies. It uses the default Nexus admin username/password, but you can change these settings easily by modifying the file '/opt/maven/mvn3/conf/settings.xml' should you decide to change the Nexus 'admin' password or set up an additional account for accessing dependencies (recommended).
 
 ### Starting and stopping your environment
 

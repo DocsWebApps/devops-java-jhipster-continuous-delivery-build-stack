@@ -73,7 +73,7 @@ install_jenkins() {
 }
 
 # Docker Install
-docker_install() {
+install_docker() {
     echo "Installing Docker..."
     yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
     yum install -y docker-ce
@@ -86,14 +86,14 @@ docker_install() {
 }
 
 # Docker Compose Install
-docker_compose_install() {
+install_docker_compose() {
     echo "Installing Docker Compose..."
     curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
 }
 
 # Docker Machine Install
-docker_machine_install() {
+install_docker_machine() {
     echo "Installing Docker Machine..."
     curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine
     chmod +x /usr/local/bin/docker-machine
