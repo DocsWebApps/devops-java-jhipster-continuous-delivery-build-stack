@@ -1,16 +1,26 @@
 version: '3.1'
 
 services:
-  gitlab:
-    image: gitlab/gitlab-ce:${GITLAB_VERSION}
+#  gitlab:
+#    image: gitlab/gitlab-ce:${GITLAB_VERSION}
+#    ports:
+#      - "${GITLAB_PORT_80}:80"
+#      - "${GITLAB_PORT_443}:443"
+#      - "${GITLAB_PORT_22}:22"
+#    volumes:
+#      - ${DOCKER_VOLUMES}/gitlab/config:/etc/gitlab
+#      - ${DOCKER_VOLUMES}/gitlab/logs:/var/log/gitlab
+#      - ${DOCKER_VOLUMES}/gitlab/data:/var/opt/gitlab
+
+  gitblit:
+    image: jacekkow/gitblit:latest
     ports:
-      - "${GITLAB_PORT_80}:80"
-      - "${GITLAB_PORT_443}:443"
-      - "${GITLAB_PORT_22}:22"
+      - "${GITBLIT_PORT_8080}:8080"
+      - "${GITBLIT_PORT_8443}:8443"
+      - "${GITBLIT_PORT_9418}:9418"
+      - "${GITBLIT_PORT_29418}:29418"
     volumes:
-      - ${DOCKER_VOLUMES}/gitlab/config:/etc/gitlab
-      - ${DOCKER_VOLUMES}/gitlab/logs:/var/log/gitlab
-      - ${DOCKER_VOLUMES}/gitlab/data:/var/opt/gitlab
+      - ${DOCKER_VOLUMES}/gitblit:/opt/gitblit-data
 
   nexus:
     image: sonatype/nexus:${NEXUS_VERSION}
