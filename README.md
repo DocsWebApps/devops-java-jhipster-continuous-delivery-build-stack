@@ -1,6 +1,6 @@
 ## A Continuous Integration Environment for Java Projects using Maven
 
-Version 1.0.0 25th July 2018
+Version 1.1.0 29th August 2018
 
 This project contains a build script to enable you to automatically build a complete working continuous integration environment from Docker images to support your Java development projects built using Maven. 
 
