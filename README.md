@@ -98,6 +98,8 @@ ${DOCKER_VOLUMES}/secrets/initialAdminPassword
 
 3. You will be asked if you want to setup a token, but you can skip this tutorial
 
+4. For more information about SonarQube, please visit: <a href="https://www.sonarqube.org/" target="_blank">SonarQube</a>
+
 
 #### Maven/Nexus Dependency Management
 Maven is configured by default to download dependencies to its own local respository stored in '${BASE_DIR}/maven/maven-repo' via the Nexus repository. This enables you to build up an artifact repository in Nexus that can be used by other servers/services and/or developers to retrieve dependencies. It uses the default Nexus admin username/password, but you can change these settings easily by changing the admin password in Nexus, and then  modifying the NEXUS_PASS environment variable in the file 'set_env.bash' should you decide to change the Nexus 'admin' password or set up an additional account for accessing dependencies (recommended).
