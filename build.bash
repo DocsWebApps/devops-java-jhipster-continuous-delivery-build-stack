@@ -20,22 +20,22 @@
 # Install OracleJDK
 install_java() {
     echo "Installing Java..."
-    yum install -y $JAVA_VERSION 
+    yum install -y $JAVA_VERSION
 }
 
 
 # Install Apache Maven
 install_maven() {
     echo "Installing Maven..."
-    mkdir ${MAVEN_DIR} 
-    cd ${MAVEN_DIR} 
+    mkdir ${MAVEN_DIR}
+    cd ${MAVEN_DIR}
     wget http://apache.mirror.anlx.net/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
     && tar xvfz apache-maven-${MAVEN_VERSION}-bin.tar.gz \
     && ln -s ${MAVEN_DIR}/apache-maven-${MAVEN_VERSION} ${MAVEN_DIR}/mvn3
     echo "export MAVEN_HOME=${MAVEN_DIR}/mvn3" >> ${HOME}/.bashrc
-    echo "export PATH=${MAVEN_HOME}/bin:$PATH" >> ${HOME}/.bashrc
+    echo "export PATH=${MAVEN_DIR}/mvn3/bin:$PATH" >> ${HOME}/.bashrc
     source ${HOME}/.bashrc
-    cp ./settings.xml ${MAVEN_DIR}/mvn3/conf/settings.xml
+    cp ${BASE_DIR}/settings.xml ${MAVEN_DIR}/mvn3/conf/settings.xml
     rm -rf ${MAVEN_DIR}/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 }
 
@@ -61,6 +61,12 @@ setup_users() {
     adduser -d /home/nexus -b /bin/bash -u 200 nexus
     mkdir -p ${DOCKER_VOLUMES}/nexus
     chown nexus:nexus -R ${DOCKER_VOLUMES}/nexus
+    mkdir -p ${DOCKER_VOLUMES}/sonarqube/logs
+    mkdir -p ${DOCKER_VOLUMES}/sonarqube/conf
+    mkdir -p ${DOCKER_VOLUMES}/sonarqube/data
+    mkdir -p ${DOCKER_VOLUMES}/sonarqube/extensions
+    chmod 777 ${DOCKER_VOLUMES}/sonarqube -R
+
 }
 
 # Install Jenkins
@@ -81,7 +87,7 @@ install_docker() {
     systemctl enable docker
     systemctl start docker
     yum install -y epel-release
-    yum install -y python-pip 
+    yum install -y python-pip
     pip install docker-compose
     pip install --upgrade pip
 }

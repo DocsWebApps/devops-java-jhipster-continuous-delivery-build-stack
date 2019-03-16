@@ -17,7 +17,7 @@ The environment has the following components:
 
 ### Workflow
 
-OK, here is the workflow. You check you code into GitBlit throughout the day as you develop it. You configure Jenkins to poll GitBlit at regular intervals checking for new commits. On finding one it will checkout the code and build it getting any dependencies from the Nexus respository (that also proxies Maven Central for convinience). It will identify any build issues and once successfully built with the 'package' Maven goal, it will run your automated tests to check for any failures. If your tests pass, the final step is to analyse your code using SonarQube. You can then view the results of the analysis and rectify any problems early in the development lifecycle.
+OK, here is the workflow. You check your code into GitBlit throughout the day as you develop it. You configure Jenkins to poll GitBlit at regular intervals checking for new commits. On finding one it will checkout the code and build it getting any dependencies from the Nexus respository (that also proxies Maven Central for convinience). It will identify any build issues and once successfully built with the 'package' Maven goal, it will run your automated tests to check for any failures. If your tests pass, the final step is to analyse your code using SonarQube. You can then view the results of the analysis and rectify any problems early in the development lifecycle.
 
 The idea behind this project is simple, develop good quality code and detect issues early on when they can be easily fixed.
 
@@ -35,10 +35,9 @@ Good luck and enjoy !
 yum install -y git
 ```
 
-3. Clone this repository onto your new Centos 7 server 
-
+3. Clone this repository onto your new Centos 7 server into the directory of your choice by replacing {your-directory}
 ```ruby
-git clone https://github.com/DocsWebApps/devops-jhipster-continuous-delivery-build-stack.git 
+git clone https://github.com/DocsWebApps/devops-jhipster-continuous-delivery-build-stack.git {your-directory} 
 ```
 
 4. Set the environment variables to your choice in the file set_env.bash. This involves selecting where you want the container bind mounts, what ports your want each service in the environment to listen on and which versions of each component do you wish to use. You can also set up the hostname of your server here.  
@@ -62,11 +61,9 @@ git clone https://github.com/DocsWebApps/devops-jhipster-continuous-delivery-bui
 #### GitBlit
 1. Naviagte to http://{serverhostname}:{port: default 9010} 
 
-2. You'll be asked to change your password. This is infact the password for the 'root' user which is the default administration account.
+2. You can now login as 'admin' with the password 'admin' and create other users and teams as you please. 
 
-3. You can now login as 'root' and create groups and other users as you please. 
-
-4. For more information about GitLab and how to use it please visit: <a href="https://about.gitlab.com/" target="_blank">GitLab</a>
+4. For more information about GitLab and how to use it please visit: <a href="http://gitblit.com/" target="_blank">GitBlit</a>
 
 #### Jenkins
 1. Naviagte to http://{serverhostname}:8080
@@ -86,25 +83,24 @@ ${DOCKER_VOLUMES}/secrets/initialAdminPassword
 6. More information about how to setup and use Jenkins can be found at: <a href="https://jenkins.io/" target="_blank">Jenkins</a>
 
 #### Nexus
-1. Navigate to http://{serverhostname}:{port: default 9030}/nexus/#welcome
+1. Navigate to http://{serverhostname}:{port: default 9050}/nexus/#welcome
 
-2. Login using the default username password of: admin / admin123. If you choose to change the 'admin' password now, please read the notes below in the section 'Maven/Nexus'.
+2. Login using the default username / password of: admin / admin123. If you choose to change the 'admin' password now, please read the notes below in the section 'Maven/Nexus'.
 
 3. Setup new users and repositories as you need
 
 4. For more information about Nexus, please visit: <a href="https://support.sonatype.com/hc/en-us/categories/201980798" target="_blank">Nexus</a>
 
 #### SonarQube
-1. Navigate to http://{serverhostname}:{port: default 9000}
+1. Navigate to http://{serverhostname}:{port: default 9060}
 
 2. Login using the default username / password of: admin / admin. Now change the 'admin' password.
 
 3. You will be asked if you want to setup a token, but you can skip this tutorial
 
-4. More information about SonarQube can be found at <a href="https://docs.sonarqube.org/display/SONAR/Documentation" target="_blank">SonarQube</a>
 
 #### Maven/Nexus Dependency Management
-Maven is configured by default to download dependencies to its own local respository stored in '/opt/maven/maven-repo' via the Nexus repository. This enables you to build up an artifact repository in Nexus that can be used by other servers/services and/or developers to retrieve dependencies. It uses the default Nexus admin username/password, but you can change these settings easily by modifying the file '/opt/maven/mvn3/conf/settings.xml' should you decide to change the Nexus 'admin' password or set up an additional account for accessing dependencies (recommended).
+Maven is configured by default to download dependencies to its own local respository stored in '${BASE_DIR}/maven/maven-repo' via the Nexus repository. This enables you to build up an artifact repository in Nexus that can be used by other servers/services and/or developers to retrieve dependencies. It uses the default Nexus admin username/password, but you can change these settings easily by changing the admin password in Nexus, and then  modifying the NEXUS_PASS environment variable in the file 'set_env.bash' should you decide to change the Nexus 'admin' password or set up an additional account for accessing dependencies (recommended).
 
 ### Starting and stopping your environment
 

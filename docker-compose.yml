@@ -24,12 +24,14 @@ services:
       - "${SONARQUBE_PORT_9000}:9000"
       - "${SONARQUBE_PORT_9092}:9092"
     environment:
-      - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
+      - sonar.jdbc.url=jdbc:postgresql://db:5432/sonar
+      - sonar.jdbc.username=sonar
+      - sonar.jdbc.password=sonar
     volumes:
       - ${DOCKER_VOLUMES}/sonarqube/conf:/opt/sonarqube/conf
       - ${DOCKER_VOLUMES}/sonarqube/data:/opt/sonarqube/data
       - ${DOCKER_VOLUMES}/sonarqube/extensions:/opt/sonarqube/extensions
-      - ${DOCKER_VOLUMES}/sonarqube/bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+      - ${DOCKER_VOLUMES}/sonarqube/logs:/opt/sonarqube/logs
     depends_on:
       - db
 
