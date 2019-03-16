@@ -1,4 +1,4 @@
-## A Continuous Integration Environment for Java Projects using Maven
+## A Continuous Delivery Environment for Automatically Building and Deploying Java Projects using Maven
 
 Version 2.0.0 16th March 2019
 
