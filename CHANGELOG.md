@@ -4,6 +4,9 @@ Bug Fixes / Niddles / Enhancements
 Future Features
 ---------------
 
+Release v2.0.0 16th March 2019 
+------------------------------
+
 Release v1.1.0 29th August 2018 
 -------------------------------
 * 2e0fd90 (HEAD, tag: v1.1.0, origin/master, master) Moved away from GitLab and using GitBlit - 29/08/2018

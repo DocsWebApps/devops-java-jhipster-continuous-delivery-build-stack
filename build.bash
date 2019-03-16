@@ -9,7 +9,8 @@
 #                                                                   #
 # Contents                                                          #
 # --------                                                          #
-# GitLab - source code repo                                         #
+# Docker / Docker-Compose - To run your containers                  #
+# GitBlit - source code repo                                        #
 # Jenkins - task runner                                             #
 # Maven - build tool and dependecy management                       #
 # Nexus - built package and compiled artifact repo                  #
@@ -26,16 +27,16 @@ install_java() {
 # Install Apache Maven
 install_maven() {
     echo "Installing Maven..."
-    mkdir /opt/maven
-    cd /opt/maven
+    mkdir ${MAVEN_DIR} 
+    cd ${MAVEN_DIR} 
     wget http://apache.mirror.anlx.net/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
     && tar xvfz apache-maven-${MAVEN_VERSION}-bin.tar.gz \
-    && ln -s /opt/maven/apache-maven-${MAVEN_VERSION} /opt/maven/mvn3
-    echo 'export MAVEN_HOME=/opt/maven/mvn3' >> ${HOME}/.bashrc
-    echo 'export PATH=$MAVEN_HOME/bin:$PATH' >> ${HOME}/.bashrc
+    && ln -s ${MAVEN_DIR}/apache-maven-${MAVEN_VERSION} ${MAVEN_DIR}/mvn3
+    echo "export MAVEN_HOME=${MAVEN_DIR}/mvn3" >> ${HOME}/.bashrc
+    echo "export PATH=${MAVEN_HOME}/bin:$PATH" >> ${HOME}/.bashrc
     source ${HOME}/.bashrc
-    cp ./settings.xml /opt/maven/mvn3/conf/settings.xml
-    rm -rf /opt/maven/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+    cp ./settings.xml ${MAVEN_DIR}/mvn3/conf/settings.xml
+    rm -rf ${MAVEN_DIR}/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 }
 
 # Set Environment
@@ -88,15 +89,8 @@ install_docker() {
 # Docker Compose Install
 install_docker_compose() {
     echo "Installing Docker Compose..."
-    curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE}/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
-}
-
-# Docker Machine Install
-install_docker_machine() {
-    echo "Installing Docker Machine..."
-    curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine
-    chmod +x /usr/local/bin/docker-machine
 }
 
 # Build Steps
@@ -108,6 +102,5 @@ install_maven
 install_jenkins
 install_docker
 install_docker_compose
-install_docker_machine
 echo "All Done !!"
 # End

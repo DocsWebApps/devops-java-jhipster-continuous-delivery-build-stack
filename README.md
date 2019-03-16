@@ -1,23 +1,23 @@
 ## A Continuous Integration Environment for Java Projects using Maven
 
-Version 1.1.0 29th August 2018
+Version 2.0.0 16th March 2019
 
-This project contains a build script to enable you to automatically build a complete working continuous integration environment from Docker images to support your Java development projects built using Maven. 
+This project contains a build script to create a DevOps continuous delivery server/system. This will enable you to automatically build a complete working continuous delivery environment from native installations and Docker images to support your Java development projects built using Maven. 
 
 The script is written for installation on Centos 7.
 
 The environment has the following components:
 
-1. GitLab: This component is used to store the source code for your project.
+1. GitBlit: A lightweight Git repository manager to store the source code for your project.
 2. Maven: I'm using Maven for code compilation and dependecy management.
-3. Jenkins: This is the task runner for the environment.
+3. Jenkins: This is the task runner for the environment. Create jobs in Jenkins to poll your Git repo for changes and then trigger a build automatically.
 4. Nexus: For storing built artifacts and dependencies. Proxies Maven Central for seemless downloading of dependencies.
 5. SonarQube: To analyse your code to identify code smells, bugs and vulnerabilities. 
-6. This project installs Docker onto your machine and except Jenkins and Maven, uses Docker images of all the other tools.
+6. This project installs Docker, Jenkins and Maven natively, anf then uses Docker images of all the other tools.
 
 ### Workflow
 
-You check you code into GitLab throughout the day as you develop it. You configure Jenkins to poll GitLab at regular intervals checking for new commits. On finding one it will checkout the code and build it getting any dependencies from the Nexus respository (that also proxies Maven Central for convinience). It will identify any build issues and once successfully built with the 'package' Maven goal, it will run your automated tests to check for any failures. If your tests pass, the final step is to analyse your code using SonarQube. You can then view the results of the analysis and rectify any problems early in the development lifecycle.
+OK, here is the workflow. You check you code into GitBlit throughout the day as you develop it. You configure Jenkins to poll GitBlit at regular intervals checking for new commits. On finding one it will checkout the code and build it getting any dependencies from the Nexus respository (that also proxies Maven Central for convinience). It will identify any build issues and once successfully built with the 'package' Maven goal, it will run your automated tests to check for any failures. If your tests pass, the final step is to analyse your code using SonarQube. You can then view the results of the analysis and rectify any problems early in the development lifecycle.
 
 The idea behind this project is simple, develop good quality code and detect issues early on when they can be easily fixed.
 
@@ -49,7 +49,7 @@ git clone https://github.com/DocsWebApps/java-ci-cd-build-stack.git
 ./build.bash
 ``` 
 
-6. Now you can start your stack using the command below. This will start Jenkins and download and start all the Docker images. Please give enough time for GitLab to start, it may take a few mins. You can check its status using the command 'docker container ls'. 
+6. Now you can start your stack using the command below. This will start Jenkins and download all the Docker images and then start all the Docker containers. You can check the status of your containers using the command 'docker container ls'. 
 
 ```ruby
 ./start_stack.bash
@@ -59,7 +59,7 @@ git clone https://github.com/DocsWebApps/java-ci-cd-build-stack.git
 
 ### Instructions to configure the environment
 
-#### GitLab
+#### GitBlit
 1. Naviagte to http://{serverhostname}:{port: default 9010} 
 
 2. You'll be asked to change your password. This is infact the password for the 'root' user which is the default administration account.

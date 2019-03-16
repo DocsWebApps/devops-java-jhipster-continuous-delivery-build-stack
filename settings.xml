@@ -52,7 +52,7 @@ under the License.
    | Default: ${user.home}/.m2/repository-->
 
   <!-- Set your maven repo location here -->
-  <localRepository>/opt/maven/maven-repo</localRepository>
+  <localRepository>${env.MAVEN_REPO}</localRepository>
 
   <!-- interactiveMode
    | This will determine whether maven prompts you when it needs input. If set to false,
@@ -130,8 +130,8 @@ r
     <!-- Setup your own Nexus repo here. Default Nexus admin user is being used by default -->
     <server>
       <id>deploymentRepo</id>
-      <username>admin</username>
-      <password>admin123</password>
+      <username>${env.NEXUS_USER}</username>
+      <password>${env.NEXUS_PASS}</password>
     </server>
   </servers>
 
@@ -160,12 +160,12 @@ r
     </mirror>
      -->
     
-    <!-- Point to your won Nexus repo here. Default settings are applied. -->
+    <!-- Point to your own Nexus repo here. Default settings are applied. -->
     <mirror>
       <id>deploymentRepo</id>
       <mirrorOf>central</mirrorOf>
       <name>public</name>
-      <url>http://localhost:9030/nexus/content/groups/public/</url>
+      <url>http://localhost:${env.NEXUS_PORT_8081}/nexus/content/groups/public/</url>
     </mirror>
 
   </mirrors>
