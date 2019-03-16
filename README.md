@@ -38,7 +38,7 @@ yum install -y git
 3. Clone this repository onto your new Centos 7 server 
 
 ```ruby
-git clone https://github.com/DocsWebApps/java-ci-cd-build-stack.git 
+git clone https://github.com/DocsWebApps/devops-jhipster-continuous-delivery-build-stack.git 
 ```
 
 4. Set the environment variables to your choice in the file set_env.bash. This involves selecting where you want the container bind mounts, what ports your want each service in the environment to listen on and which versions of each component do you wish to use. You can also set up the hostname of your server here.  
