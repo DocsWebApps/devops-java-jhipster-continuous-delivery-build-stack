@@ -35,7 +35,7 @@ install_maven() {
     echo "export MAVEN_HOME=${MAVEN_DIR}/mvn3" >> ${HOME}/.bashrc
     echo "export PATH=${MAVEN_DIR}/mvn3/bin:$PATH" >> ${HOME}/.bashrc
     source ${HOME}/.bashrc
-    sed -e "s|env.MAVEN_REPO|$MAVEN_REPO|g" -e "s|env.NEXUS_USER|$NEXUS_USER|g" -e "s|env.NEXUS_PASS|$NEXUS_PASS|g" < ${BASE_DIR}/settings.xml.orig > ${MAVEN_DIR}/mvn3/conf/settings.xml
+    sed -e "s|env.MAVEN_REPO|$MAVEN_REPO|g" -e "s|env.NEXUS_USER|$NEXUS_USER|g" -e "s|env.NEXUS_PASS|$NEXUS_PASS|g" -e s"|env.NEXUS_PORT_8081|$NEXUS_PORT_8081|g" < ${BASE_DIR}/settings.xml.orig > ${MAVEN_DIR}/mvn3/conf/settings.xml
     rm -rf ${MAVEN_DIR}/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 }
 

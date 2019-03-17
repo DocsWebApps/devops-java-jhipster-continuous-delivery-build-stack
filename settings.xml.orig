@@ -165,7 +165,7 @@ r
       <id>deploymentRepo</id>
       <mirrorOf>central</mirrorOf>
       <name>public</name>
-      <url>http://localhost:${env.NEXUS_PORT_8081}/nexus/content/groups/public/</url>
+      <url>http://localhost:env.NEXUS_PORT_8081/nexus/content/groups/public/</url>
     </mirror>
 
   </mirrors>
