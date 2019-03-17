@@ -52,7 +52,7 @@ under the License.
    | Default: ${user.home}/.m2/repository-->
 
   <!-- Set your maven repo location here -->
-  <localRepository>${env.MAVEN_REPO}</localRepository>
+  <localRepository>env.MAVEN_REPO</localRepository>
 
   <!-- interactiveMode
    | This will determine whether maven prompts you when it needs input. If set to false,
@@ -130,8 +130,8 @@ r
     <!-- Setup your own Nexus repo here. Default Nexus admin user is being used by default -->
     <server>
       <id>deploymentRepo</id>
-      <username>${env.NEXUS_USER}</username>
-      <password>${env.NEXUS_PASS}</password>
+      <username>env.NEXUS_USER</username>
+      <password>env.NEXUS_PASS</password>
     </server>
   </servers>
 

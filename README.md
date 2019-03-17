@@ -102,7 +102,7 @@ ${DOCKER_VOLUMES}/secrets/initialAdminPassword
 
 
 #### Maven/Nexus Dependency Management
-Maven is configured by default to download dependencies to its own local respository stored in '${BASE_DIR}/maven/maven-repo' via the Nexus repository. This enables you to build up an artifact repository in Nexus that can be used by other servers/services and/or developers to retrieve dependencies. It uses the default Nexus admin username/password, but you can change these settings easily by changing the admin password in Nexus, and then  modifying the NEXUS_PASS environment variable in the file 'set_env.bash' should you decide to change the Nexus 'admin' password or set up an additional account for accessing dependencies (recommended).
+I have configured Maven to download dependencies to its own local respository stored in '${BASE_DIR}/maven/maven-repo' via the Nexus artifact repository. This enables you to build up an artifact repository in Nexus that can then be used by other servers/services and/or developers to retrieve dependencies. Maven connects to the Nexus repository server via the configuration setup in the '${$MAVEN_DIR}/mvn3/conf/settings.xml' file. It uses the Nexus admin username/password you setup in the 'set_env.bash' file, but you can change these settings easily by changing the admin password in Nexus, then modify the NEXUS_PASS environment variable in the file 'set_env.bash', and then finally updating the password in the Maven settings file.
 
 ### Starting and stopping your environment
 
