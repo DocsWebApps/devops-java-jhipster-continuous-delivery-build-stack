@@ -13,7 +13,7 @@ The environment has the following components:
 3. Jenkins: This is the task runner for the environment. Create jobs in Jenkins to poll your Git repo for changes and then trigger a build automatically.
 4. Nexus: For storing built artifacts and dependencies. Proxies Maven Central for seemless downloading of dependencies.
 5. SonarQube: To analyse your code to identify code smells, bugs and vulnerabilities. 
-6. This project installs Docker, Jenkins and Maven natively, anf then uses Docker images of all the other tools.
+6. This project installs Docker, Jenkins and Maven natively, and then uses Docker images of all the other tools.
 
 ### Workflow
 
@@ -106,14 +106,14 @@ I have configured Maven to download dependencies to its own local respository st
 
 ### Starting and stopping your environment
 
-You can start up or stop your CI environment by simply using the following commands:
+You can start up or stop your environment by simply using the following commands:
 
 ```ruby
-./start_stack.bash - to start the CI environment
+./start_stack.bash - to start the environment
 ```
 
 ```ruby
-./stop_stack.bash - to stop the CI environment
+./stop_stack.bash - to stop the environment
 ```
 
 ### License
