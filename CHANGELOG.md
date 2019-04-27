@@ -3,6 +3,7 @@ Bug Fixes / Niddles / Enhancements
 
 Future Features
 ---------------
+1. Add a build for Ubuntu
 
 Release v2.0.0 16th March 2019 
 ------------------------------
